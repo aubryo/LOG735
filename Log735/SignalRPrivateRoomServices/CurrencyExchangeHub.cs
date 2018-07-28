@@ -11,15 +11,15 @@ namespace SignalRPrivateRoomServices
 {
     public class CurrencyExchangeHub : Hub
     {
-        private readonly CurrencyExchangeService _currencyExchangeHub;
+        private readonly SignalRPrivateRoomServices1 _currencyExchangeHub;
 
         public CurrencyExchangeHub() :
-            this(CurrencyExchangeService.Instance)
+            this(SignalRPrivateRoomServices1.Instance)
         {
 
         }
 
-        public CurrencyExchangeHub(CurrencyExchangeService currencyExchange)
+        public CurrencyExchangeHub(SignalRPrivateRoomServices1 currencyExchange)
         {
             _currencyExchangeHub = currencyExchange;
         }

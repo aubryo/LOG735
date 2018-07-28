@@ -26,3 +26,6 @@ C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServi
 C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServices\obj\Debug\SignalRPrivateRoomServices.csproj.CopyComplete
 C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServices\obj\Debug\SignalRPrivateRoomServices.exe
 C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServices\obj\Debug\SignalRPrivateRoomServices.pdb
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServices\obj\Debug\SignalRPrivateRoomServices.SignalRPrivateRoomServices.resources
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServices\obj\Debug\SignalRPrivateRoomServices.csproj.GenerateResource.cache
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\SignalRPrivateRoomServices\obj\Debug\SignalRPrivateRoomServices.ProjectInstaller.resources

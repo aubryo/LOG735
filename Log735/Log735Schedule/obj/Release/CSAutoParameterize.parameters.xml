@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="data source=log735db.cz0yip5ikhzo.us-east-1.rds.amazonaws.com,1433;initial catalog=LOG735;persist security info=True;user id=log735Admin;password=log735Admin;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PC\\Documents\\BAC_LOG\\LOG735Projet\\LOG735\\Log735\\Log735Schedule\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

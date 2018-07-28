@@ -21,47 +21,50 @@ namespace SignalRPrivateRoomServices
             /// <summary>
             /// The main entry point for the application.
             /// </summary>
-            static void Main()
+            static void Main(string[] args)
             {
-            string url = "http://localhost:8089";
-            using (WebApp.Start(url))
-            {
-                Console.WriteLine("Server running on {0}", url);
-                while (true)
-                {
 
-                    string key = Console.ReadLine();
-                    if (key == null)
-                        continue;
-                    if (key.ToUpper() == "W")
-                    {
-                        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-                        hubContext.Clients.All.addMessage("server", "ServerMessage");
-                        Console.WriteLine("Server Sending addMessage\n");
-                    }
-                    if (key.ToUpper() == "E")
-                    {
-                        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-                        hubContext.Clients.All.heartbeat();
-                        Console.WriteLine("Server Sending heartbeat\n");
-                    }
-                    if (key.ToUpper() == "R")
-                    {
-                        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            ServiceBase[] ServicesToRun = new ServiceBase[] { new SignalRPrivateRoomServices(args) };
+            ServiceBase.Run(ServicesToRun);
+            //string url = "http://localhost:8089";
+            //using (WebApp.Start(url))
+            //{
+            //    Console.WriteLine("Server running on {0}", url);
+            //    while (true)
+            //    {
 
-                        var vv = new HelloModel { Age = 37, Molly = "pushed direct from Server " };
+            //        string key = Console.ReadLine();
+            //        if (key == null)
+            //            continue;
+            //        if (key.ToUpper() == "W")
+            //        {
+            //            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            //            hubContext.Clients.All.addMessage("server", "ServerMessage");
+            //            Console.WriteLine("Server Sending addMessage\n");
+            //        }
+            //        if (key.ToUpper() == "E")
+            //        {
+            //            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            //            hubContext.Clients.All.heartbeat();
+            //            Console.WriteLine("Server Sending heartbeat\n");
+            //        }
+            //        if (key.ToUpper() == "R")
+            //        {
+            //            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
 
-                        hubContext.Clients.All.sendHelloObject(vv);
-                        Console.WriteLine("Server Sending sendHelloObject\n");
-                    }
-                    if (key.ToUpper() == "C")
-                    {
-                        break;
-                    }
-                }
+            //            var vv = new HelloModel { Age = 37, Molly = "pushed direct from Server " };
 
-                Console.ReadLine();
-            }
+            //            hubContext.Clients.All.sendHelloObject(vv);
+            //            Console.WriteLine("Server Sending sendHelloObject\n");
+            //        }
+            //        if (key.ToUpper() == "C")
+            //        {
+            //            break;
+            //        }
+            //    }
+
+            //    Console.ReadLine();
+            //}
         }
         }
     
