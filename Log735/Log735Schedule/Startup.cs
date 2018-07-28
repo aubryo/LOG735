@@ -8,6 +8,7 @@ namespace Log735Schedule
     {
         public void Configuration(IAppBuilder app)
         {
+            ConfigurationSignalR(app);
             ConfigureAuth(app);
         }
     }

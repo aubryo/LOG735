@@ -1,0 +1,6 @@
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\bin\Debug\PrivateRoomDomain.dll
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\bin\Debug\PrivateRoomDomain.pdb
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Debug\PrivateRoomDomain.csprojAssemblyReference.cache
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Debug\PrivateRoomDomain.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Debug\PrivateRoomDomain.dll
+C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Debug\PrivateRoomDomain.pdb

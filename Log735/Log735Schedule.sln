@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log735Schedule", "Log735Schedule\Log735Schedule.csproj", "{71052DC8-F9E2-499E-B590-D71B82C9EFDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRPrivateRoomServices", "SignalRPrivateRoomServices\SignalRPrivateRoomServices.csproj", "{77EBF42E-D91E-4354-9204-BE4C9139F254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateRoomDomain", "PrivateRoomDomain\PrivateRoomDomain.csproj", "{1858373F-EC67-4D1B-B572-395B0AF66B5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{71052DC8-F9E2-499E-B590-D71B82C9EFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71052DC8-F9E2-499E-B590-D71B82C9EFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71052DC8-F9E2-499E-B590-D71B82C9EFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77EBF42E-D91E-4354-9204-BE4C9139F254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EBF42E-D91E-4354-9204-BE4C9139F254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EBF42E-D91E-4354-9204-BE4C9139F254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EBF42E-D91E-4354-9204-BE4C9139F254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1858373F-EC67-4D1B-B572-395B0AF66B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1858373F-EC67-4D1B-B572-395B0AF66B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1858373F-EC67-4D1B-B572-395B0AF66B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1858373F-EC67-4D1B-B572-395B0AF66B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
