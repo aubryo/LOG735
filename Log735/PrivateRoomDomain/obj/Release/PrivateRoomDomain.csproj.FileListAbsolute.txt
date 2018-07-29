@@ -1,5 +1,0 @@
-C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\bin\Release\PrivateRoomDomain.dll
-C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\bin\Release\PrivateRoomDomain.pdb
-C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Release\PrivateRoomDomain.csproj.CoreCompileInputs.cache
-C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Release\PrivateRoomDomain.dll
-C:\Users\PC\Documents\BAC_LOG\LOG735Projet\LOG735\Log735\PrivateRoomDomain\obj\Release\PrivateRoomDomain.pdb
