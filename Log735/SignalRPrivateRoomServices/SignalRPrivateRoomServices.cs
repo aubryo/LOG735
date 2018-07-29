@@ -8,13 +8,17 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using Microsoft.Owin.Hosting;
+using Microsoft.Owin;
+
+[assembly: OwinStartup(typeof(SignalRPrivateRoomServices.Startup))]
 
 namespace SignalRPrivateRoomServices
 {
     public partial class SignalRPrivateRoomServices : ServiceBase
     {
         private System.ComponentModel.IContainer components;
-        private System.Diagnostics.EventLog eventLog1;
+        public System.Diagnostics.EventLog eventLog1;
         private int eventId = 1;
         private string eventSourceName;
         private string logName;
@@ -54,6 +58,8 @@ namespace SignalRPrivateRoomServices
 
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            string url = "http://localhost:8089";//18.191.13.220
+            WebApp.Start(url);
         }
 
         protected override void OnStop()
@@ -66,6 +72,7 @@ namespace SignalRPrivateRoomServices
 
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            
         }
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {
@@ -74,14 +81,7 @@ namespace SignalRPrivateRoomServices
         }
 
 
-        private void InitializeComponent()
-        {
-            this.eventLog1 = new System.Diagnostics.EventLog();
-            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
-            this.ServiceName = "SignalRPrivateRoomServices";
-
-        }
+     
 
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);

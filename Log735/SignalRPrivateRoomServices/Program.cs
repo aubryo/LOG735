@@ -23,17 +23,21 @@ namespace SignalRPrivateRoomServices
             /// </summary>
             static void Main(string[] args)
             {
-
-            ServiceBase[] ServicesToRun = new ServiceBase[] { new SignalRPrivateRoomServices(args) };
+            var service = new SignalRPrivateRoomServices(args);
+            ServiceBase[] ServicesToRun = new ServiceBase[] { service};
             ServiceBase.Run(ServicesToRun);
-            //string url = "http://localhost:8089";
+
+            //string url = "http://localhost:8089";//18.191.13.220
             //using (WebApp.Start(url))
             //{
+                
+            //    service.eventLog1.WriteEntry("WEP APP SHOULD BE STARTED " + url);
             //    Console.WriteLine("Server running on {0}", url);
             //    while (true)
             //    {
 
-            //        string key = Console.ReadLine();
+            //        service.eventLog1.WriteEntry("boucle " + url);
+            //        string key = null;
             //        if (key == null)
             //            continue;
             //        if (key.ToUpper() == "W")
@@ -65,7 +69,15 @@ namespace SignalRPrivateRoomServices
 
             //    Console.ReadLine();
             //}
-        }
-        }
-    
+
+
+            }
+
+
+      
+
+
+
+    }
+
 }

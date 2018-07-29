@@ -19,6 +19,7 @@ namespace SignalRPrivateRoomServices
         public void Heartbeat()
         {
             Console.WriteLine("Hub Heartbeatfffff\n");
+           
             Clients.All.heartbeat();
         }
 

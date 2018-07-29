@@ -21,12 +21,24 @@
         }
 
         #region Component Designer generated code
+        private void InitializeComponent()
+        {
+            this.eventLog1 = new System.Diagnostics.EventLog();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
+            // 
+            // SignalRChat
+            // 
+            this.ServiceName = "SignalRPrivateRoomServices";
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
+
+        }
+
 
         /// <summary> 
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-   
+
 
         #endregion
     }
