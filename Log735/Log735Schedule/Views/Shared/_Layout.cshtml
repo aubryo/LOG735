@@ -4,41 +4,49 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <style type="text/css">
-        .container {
-            background-color: #99CCFF;
-            border: thick solid #808080;
-            padding: 20px;
-            margin: 20px;
-        }
-    </style>
-    <link rel='stylesheet' href='/Content/fullcalendar.css' />
 
+    <link rel='stylesheet' href='/Content/fullcalendar.css' />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+    <nav>
+        <div class="nav-wrapper">
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @*<button type="button" class="navbar-toggle center" data-toggle="collapse" data-target=".navbar-collapse"></button>
+                    @Html.ActionLink("Horaire", "Index", "Home", new { area = "" }, new { @class = "center hide-on-med-and-down " })*@
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { @class = "waves-effect waves-light btn" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { @class = "waves-effect waves-light btn" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "waves-effect waves-light btn" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </nav>
+
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -47,8 +55,95 @@
         </footer>
     </div>
 
-    @*@Scripts.Render("~/bundles/jquery")*@
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+
+
+
     @RenderSection("scripts", required: false)
+    @*<script src='https://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>*@
+    @Scripts.Render("~/Scripts/materialize/materialize.min.js")
+    <script src='https://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+        <script src='https://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+    <script src="http://localhost:8089/signalr/hubs"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/materialize/css/materialize.css")
+    <script>
+        jQuery(function () {
+            //Set the hubs URL for the connection
+            $.connection.hub.url = "http://localhost:8089/signalr";
+
+            // Declare a proxy to reference the hub.
+            var chat = $.connection.myHub;
+
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.addMessage = function (name, message) {
+                // Html encode display name and message.
+                var encodedName = $('<div />').text(name).html();
+                var encodedMsg = $('<div />').text(message).html();
+                // Add the message to the page.
+                $('#discussion').append('<li><strong>Recieved addMessage' + encodedName
+                    + '</strong>&nbsp;&nbsp;' + encodedMsg + '</li>');
+            };
+
+            chat.client.sendHelloObject = function (hello) {
+                // Html encode display name and message.
+                var encodedName = $('<div />').text(hello.Molly).html();
+                var encodedMsg = $('<div />').text(hello.Age).html();
+                // Add the message to the page.
+                $('#discussion').append('<li><strong>Recieved sendHelloObject:' + encodedName + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+            };
+
+            chat.client.heartbeat = function () {
+                // Html encode display name and message.
+                var encodedName = $('<div />').text("heartbeat").html();
+
+                // Add the message to the page.
+                $('#discussion').append('<li><strong>Recieved ' + encodedName + '</strong></li>');
+            };
+
+            // Get the user name and store it to prepend to messages.
+            $('#displayname').val(prompt('Enter your name:', ''));
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.addMessage($('#displayname').val(), $('#message').val());
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+
+                $('#heartbeat').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.heartbeat();
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+
+                $('#sendHelloObject').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.sendHelloObject({ Age: 2, Molly: $('#message').val() });
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+            });
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+            })
+
+        });
+    </script>
 </body>
 </html>

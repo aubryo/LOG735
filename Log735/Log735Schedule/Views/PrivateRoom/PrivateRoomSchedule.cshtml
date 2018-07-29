@@ -1,0 +1,34 @@
+﻿@using PrivateRoomDomain.Model
+@model PrivateRooms
+@{
+    ViewBag.Title = "Private Room";
+
+}
+
+<body>
+    <div class="row">
+        <div class="col-md-8">
+            <div>
+                <h2>hellllooo private room here</h2>
+                @Html.Label(Model.RoomName)
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <input type="button" id="heartbeat" value="Heartbeat" />
+        <input type="hidden" id="displayname" />
+
+        <input type="button" id="sendHelloObject" value="sendHelloObject" />
+        <input type="hidden" id="displayname" />
+
+       
+        <input type="text" id="message" />
+        <input type="button" id="sendmessage" value="Send" />
+        <input type="hidden" id="displayname" />
+        <ul id="discussion"></ul>
+    </div>
+
+    <div id='calendar'></div>
+</body>
+
+
