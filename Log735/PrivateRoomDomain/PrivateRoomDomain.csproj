@@ -52,27 +52,82 @@
   <ItemGroup>
     <Compile Include="Currency.cs" />
     <Compile Include="HelloModel.cs" />
-    <Compile Include="Model\ActiveRooms.cs" />
-    <Compile Include="Model\AspNetRoles.cs" />
-    <Compile Include="Model\AspNetUserClaims.cs" />
-    <Compile Include="Model\AspNetUserLogins.cs" />
-    <Compile Include="Model\AspNetUsers.cs" />
-    <Compile Include="Model\CourseInfo.cs" />
-    <Compile Include="Model\Courses.cs" />
-    <Compile Include="Model\C__MigrationHistory.cs" />
-    <Compile Include="Model\Departments.cs" />
-    <Compile Include="Model\LOG735Context.cs" />
-    <Compile Include="Model\PrivateRooms.cs" />
-    <Compile Include="Model\Schedules.cs" />
-    <Compile Include="Model\Trimesters.cs" />
-    <Compile Include="Model\UserProfiles.cs" />
-    <Compile Include="Model\Users.cs" />
+    <Compile Include="Helper\DbContextHelper.cs" />
+    <Compile Include="Model\ActiveRooms.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AspNetRoles.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AspNetUserClaims.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AspNetUserLogins.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AspNetUsers.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CourseInfo.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Courses.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Departments.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Log735Context.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Log735Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Log735Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Log735Context.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Log735Context.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PrivateRooms.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Trimesters.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserProfiles.cs">
+      <DependentUpon>Log735Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Model\Log735Context.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Log735Context.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Log735Context.edmx.diagram">
+      <DependentUpon>Log735Context.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\Log735Context.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Log735Context.edmx</DependentUpon>
+      <LastGenOutput>Log735Context.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Log735Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Log735Context.edmx</DependentUpon>
+      <LastGenOutput>Log735Context.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

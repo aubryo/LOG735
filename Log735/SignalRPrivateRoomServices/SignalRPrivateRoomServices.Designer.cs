@@ -23,13 +23,13 @@
         #region Component Designer generated code
         private void InitializeComponent()
         {
-            this.eventLog1 = new System.Diagnostics.EventLog();
-            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
-            // 
-            // SignalRChat
-            // 
-            this.ServiceName = "SignalRPrivateRoomServices";
-            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
+            //this.eventLog1 = new System.Diagnostics.EventLog();
+            //((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
+            //// 
+            //// SignalRChat
+            //// 
+            //this.ServiceName = "SignalRPrivateRoomServices";
+            //((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
 
         }
 

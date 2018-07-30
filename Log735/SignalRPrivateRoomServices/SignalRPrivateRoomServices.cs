@@ -26,26 +26,26 @@ namespace SignalRPrivateRoomServices
         public SignalRPrivateRoomServices(string[] args)
         {
             InitializeComponent();
-            eventLog1 = new EventLog();
-            if (args.Count() > 0)
-            {
-                eventSourceName = args[0];
-            }
-            if (args.Count() > 1)
-            {
-                logName = args[1];
-            }
-            eventLog1 = new System.Diagnostics.EventLog();
-            if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
-            {
-                System.Diagnostics.EventLog.CreateEventSource(eventSourceName, logName);
-            }
-            eventLog1.Source = eventSourceName;
-            eventLog1.Log = logName;
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 60000; // 60 seconds  
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
-            timer.Start();
+            //eventLog1 = new EventLog();
+            //if (args.Count() > 0)
+            //{
+            //    eventSourceName = args[0];
+            //}
+            //if (args.Count() > 1)
+            //{
+            //    logName = args[1];
+            //}
+            //eventLog1 = new System.Diagnostics.EventLog();
+            //if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
+            //{
+            //    System.Diagnostics.EventLog.CreateEventSource(eventSourceName, logName);
+            //}
+            //eventLog1.Source = eventSourceName;
+            //eventLog1.Log = logName;
+            //System.Timers.Timer timer = new System.Timers.Timer();
+            //timer.Interval = 60000; // 60 seconds  
+            //timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
+            //timer.Start();
         }
 
         protected override void OnStart(string[] args)

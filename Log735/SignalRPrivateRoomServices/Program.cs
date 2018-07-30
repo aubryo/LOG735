@@ -23,58 +23,58 @@ namespace SignalRPrivateRoomServices
             /// </summary>
             static void Main(string[] args)
             {
-            var service = new SignalRPrivateRoomServices(args);
-            ServiceBase[] ServicesToRun = new ServiceBase[] { service};
-            ServiceBase.Run(ServicesToRun);
+            //var service = new SignalRPrivateRoomServices(args);
+            //ServiceBase[] ServicesToRun = new ServiceBase[] { service };
+            //ServiceBase.Run(ServicesToRun);
 
-            //string url = "http://localhost:8089";//18.191.13.220
-            //using (WebApp.Start(url))
-            //{
-                
-            //    service.eventLog1.WriteEntry("WEP APP SHOULD BE STARTED " + url);
-            //    Console.WriteLine("Server running on {0}", url);
-            //    while (true)
-            //    {
-
-            //        service.eventLog1.WriteEntry("boucle " + url);
-            //        string key = null;
-            //        if (key == null)
-            //            continue;
-            //        if (key.ToUpper() == "W")
-            //        {
-            //            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-            //            hubContext.Clients.All.addMessage("server", "ServerMessage");
-            //            Console.WriteLine("Server Sending addMessage\n");
-            //        }
-            //        if (key.ToUpper() == "E")
-            //        {
-            //            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-            //            hubContext.Clients.All.heartbeat();
-            //            Console.WriteLine("Server Sending heartbeat\n");
-            //        }
-            //        if (key.ToUpper() == "R")
-            //        {
-            //            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-
-            //            var vv = new HelloModel { Age = 37, Molly = "pushed direct from Server " };
-
-            //            hubContext.Clients.All.sendHelloObject(vv);
-            //            Console.WriteLine("Server Sending sendHelloObject\n");
-            //        }
-            //        if (key.ToUpper() == "C")
-            //        {
-            //            break;
-            //        }
-            //    }
-
-            //    Console.ReadLine();
-            //}
+            string url = "http://localhost:8089";//18.191.13.220
+            using (WebApp.Start(url))
+            {
 
 
+                Console.WriteLine("Server running on {0}", url);
+                while (true)
+                {
+
+
+                    string key = null;
+                    if (key == null)
+                        continue;
+                    if (key.ToUpper() == "W")
+                    {
+                        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+                        hubContext.Clients.All.addMessage("server", "ServerMessage");
+                        Console.WriteLine("Server Sending addMessage\n");
+                    }
+                    if (key.ToUpper() == "E")
+                    {
+                        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+                        hubContext.Clients.All.heartbeat();
+                        Console.WriteLine("Server Sending heartbeat\n");
+                    }
+                    if (key.ToUpper() == "R")
+                    {
+                        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+
+                        var vv = new HelloModel { Age = 37, Molly = "pushed direct from Server " };
+
+                        hubContext.Clients.All.sendHelloObject(vv);
+                        Console.WriteLine("Server Sending sendHelloObject\n");
+                    }
+                    if (key.ToUpper() == "C")
+                    {
+                        break;
+                    }
+                }
+
+                Console.ReadLine();
             }
 
 
-      
+        }
+
+
+
 
 
 
