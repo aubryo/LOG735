@@ -1,5 +1,5 @@
-﻿@using PrivateRoomDomain.Model
-@model PrivateRooms
+﻿@using Log735Schedule.Models
+@model PrivateRoomModel
 @{
     ViewBag.Title = "Private Room";
 
@@ -10,10 +10,18 @@
         <div class="col-md-8">
             <div>
                 <h2>Salle @Html.Label(Model.RoomName)</h2>
-                
+                @if (Model.HubUrl == "http://localhost:8089")
+                {
+                    <h2 id="hub1">Serveur numéro 1</h2>
+                }
+                else if (Model.HubUrl == "http://localhost:8088")
+                {
+                    <h2 id="hub2">Serveur numéro 2</h2>
+                }
+
                 <div>
                     <button id="buttonrefresh" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
-
+                    
                 </div>
             </div>
         </div>
@@ -37,81 +45,89 @@
 @section calendarScript{
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#buttonrefresh').click(function () {
+        var serveur = $("#hub1");
+        var serveurUrl = "";
+        if (serveur) {
+            serveurUrl = "http://localhost:8089/signalr";
+        }
+        else {
+            serveur = $("#hub2");
+            if (serveur)
+                serveurUrl = "http://localhost:8088/signalr";
+        }
+        
+        $(function () {
+            //Set the hubs URL for the connection
+            $.connection.hub.url = serveurUrl;
 
+            // Declare a proxy to reference the hub.
+            var privateRoomProxy = $.connection.privateRoomHub;
+            var startTime = $.fullCalendar.moment('2018-08-02T08:00:00');
+            var endTime = $.fullCalendar.moment('2018-08-02T12:00:00');
+            var event = {
+          
+                title: "Hell22o",
+                description: "Patate",
+                start: startTime,
+                end: endTime,
+                backgroundColor: "#9501fc",
+                borderColor: "#fc0101"
 
-            $.ajax({
-                url: '/PrivateRoom/GetHubConnection',
-                type: "GET",
-                dataType: "JSON",
+            }
+            $("#calendar").fullCalendar('renderEvent', event, true);
+             //create a function that the hub can call to broadcast messages.
+            privateRoomProxy.client.newEvent = function (eventModel) {
+                var events = {
+                 
+                    title: "Hello",
+                    description: "Patate",
+                    start: moment("2018-08-03T08:30:00"),
+                    end: moment("2018-08-03T12:30:00"),
+                    backgroundColor: "#9501fc",
+                    borderColor: "#fc0101"
 
-                success: function (result) {
-                    
-                    //$(function () {
-                    //    //Set the hubs URL for the connection
-                    //    $.connection.hub.url = result;
-
-                    //    // Declare a proxy to reference the hub.
-                    //    var chat = $.connection.myHub;
-
-                    //    // Create a function that the hub can call to broadcast messages.
-                    //    chat.client.addMessage = function (name, message) {
-                    //        // Html encode display name and message.
-                    //        var encodedName = $('<div />').text(name).html();
-                    //        var encodedMsg = $('<div />').text(message).html();
-                    //        // Add the message to the page.
-                    //        $('#discussion').append('<li><strong>Recieved addMessage' + encodedName
-                    //            + '</strong>&nbsp;&nbsp;' + encodedMsg + '</li>');
-                    //    };
-
-                    //    chat.client.sendHelloObject = function (hello) {
-                    //        // Html encode display name and message.
-                    //        var encodedName = $('<div />').text(hello.Molly).html();
-                    //        var encodedMsg = $('<div />').text(hello.Age).html();
-                    //        // Add the message to the page.
-                    //        $('#discussion').append('<li><strong>Recieved sendHelloObject:' + encodedName + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-                    //    };
-
-                    //    chat.client.heartbeat = function () {
-                    //        // Html encode display name and message.
-                    //        var encodedName = $('<div />').text("heartbeat").html();
-
-                    //        // Add the message to the page.
-                    //        $('#discussion').append('<li><strong>Recieved ' + encodedName + '</strong></li>');
-                    //    };
-
-                    //    // Get the user name and store it to prepend to messages.
-                    //    $('#displayname').val(prompt('Enter your name:', ''));
-                    //    // Set initial focus to message input box.
-                    //    $('#message').focus();
-                    //    // Start the connection.
-                    //    $.connection.hub.start().done(function () {
-                    //        $('#sendmessage').click(function () {
-                    //            // Call the Send method on the hub.
-                    //            chat.server.addMessage($('#displayname').val(), $('#message').val());
-                    //            // Clear text box and reset focus for next comment.
-                    //            $('#message').val('').focus();
-                    //        });
-
-                    //        $('#heartbeat').click(function () {
-                    //            // Call the Send method on the hub.
-                    //            chat.server.heartbeat();
-                    //            // Clear text box and reset focus for next comment.
-                    //            $('#message').val('').focus();
-                    //        });
-
-                    //        $('#sendHelloObject').click(function () {
-                    //            // Call the Send method on the hub.
-                    //            chat.server.sendHelloObject({ Age: 2, Molly: $('#message').val() });
-                    //            // Clear text box and reset focus for next comment.
-                    //            $('#message').val('').focus();
-                    //        });
-                    //    });
-                    //});
                 }
+                $("#calendar").fullCalendar('renderEvent', events, true);
+            };
+
+            privateRoomProxy.client.removeEvent = function (id) {
+                $("#calendar").fullCalendar('removeEvent', id);
+            };
+
+            privateRoomProxy.client.heartbeat = function () {
+                // Html encode display name and message.
+                var encodedName = $('<div />').text("heartbeat").html();
+
+                // Add the message to the page.
+                $('#discussion').append('<li><strong>Recieved ' + encodedName + '</strong></li>');
+            };
+       
+            // Get the user name and store it to prepend to messages.
+            $('#displayname').val(prompt('Enter your name:', ''));
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#buttonrefresh').click(function () {
+                    // Call the Send method on the hub.
+                    privateRoomProxy.server.newEvent("3");
+        
+                });
+
+                $('#heartbeat').click(function () {
+                    // Call the Send method on the hub.
+                  //  privateRoomProxy.server.heartbeat();
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+
+                $('#sendHelloObject').click(function () {
+                    // Call the Send method on the hub.
+                   // privateRoomProxy.server.sendHelloObject({ Age: 2, Molly: $('#message').val() });
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
             });
-
-
         });
 
 

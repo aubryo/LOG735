@@ -26,7 +26,11 @@ namespace SignalRPrivateRoomServices
 
             return false ;
         }
-
+       public void newEvent(string events)
+       {
+            var r = events;
+            Clients.All.newEvent(events);
+       }
         public Task SubcribeToRoom(string roomName)
         {
             if (!UserHandler.ActiveGroups.Where(v => v.Key == roomName).Any())
@@ -64,6 +68,7 @@ namespace SignalRPrivateRoomServices
             dbContext.SaveChanges();
             return true;
         }
+        
         public PrivateRooms GetPrivateRoom(string roomName)
         {
             var dbContext = new LOG735Entities();

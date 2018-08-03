@@ -1,6 +1,7 @@
 ﻿using Log735Schedule.Helper;
 using Log735Schedule.Models;
 using PrivateRoomDomain.Helper;
+using PrivateRoomDomain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,18 @@ namespace Log735Schedule.Controllers
             return View();
         }
         [HttpPost]
-        public void LoginPrivateRoom(PrivateRoomDomain.Model.PrivateRooms model, string returnUrl)
+        public void LoginPrivateRoom(PrivateRooms model, string returnUrl)
         {
+       
             PrivateRoomSchedule(model, returnUrl);
         }
         [HttpPost]
-        public ActionResult PrivateRoomSchedule(PrivateRoomDomain.Model.PrivateRooms model, string returnUrl)
+        public ActionResult PrivateRoomSchedule(PrivateRooms model, string returnUrl)
         {
+      
             var returnModel = model;
             var bdModel = DbContextHelper.RoomExistBD(model);
+            //Room exist pas dans bd
             if (bdModel.RoomId == 0)
             {
                 ModelHelper.PrivateRoomModel(model);
@@ -36,13 +40,14 @@ namespace Log735Schedule.Controllers
                 returnModel = CommunicationHandler.CreatePrivateRoom(model);
                 
             }
-            else
+            else //Regarde si la room est en cours
             {
                 var hubUrl = GetHubRoomExist(model.RoomName);
                 if (hubUrl != "no")
-                    ConnectToHub(hubUrl);
+                    ConnectToHub(hubUrl); //Connect au room 
                 else
-                    ConnectToAvailableHub();
+                    ConnectToAvailableHub(); //Prend le hub le plus libre pour la room
+
                 returnModel = CommunicationHandler.GetPrivateRoom(model.RoomName);
             }
 

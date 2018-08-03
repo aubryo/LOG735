@@ -1,18 +1,18 @@
 ﻿$(document).ready(function () {
     $('#calendar').fullCalendar({
-        header:
-            {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-        buttonText: {
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day'
-        },
-
+        defaultView: 'agendaWeek',
+        header: false,
+        //views: {
+        //    agendaWeek: {
+              
+        //        minTime: "08:00:00",
+        //        maxTime: "22:00:00",
+        //    }
+        //},
+          allDaySlot: false,
+        minTime: "08:00:00",
+        maxTime: "22:00:00",
+      contentHeight: 'auto',
         events: function (start, end, timezone, callback) {
             $.ajax({
                 url: '/Home/GetCalendarData',
@@ -39,12 +39,12 @@
             });
         },
 
-        eventRender: function (event, element) {
-            element.qtip(
-                {
-                    content: event.description
-                });
-        },
+        //eventRender: function (event, element) {
+        //    element.qtip(
+        //        {
+        //            content: event.description
+        //        });
+        //},
 
         editable: false
     });

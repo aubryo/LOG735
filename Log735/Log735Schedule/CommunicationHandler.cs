@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR.Client;
+﻿using Log735Schedule.Models;
+using Microsoft.AspNet.SignalR.Client;
 using PrivateRoomDomain;
 using PrivateRoomDomain.Model;
 using System;
@@ -49,11 +50,13 @@ namespace Log735Schedule
             return "no";
         }
 
-        public static PrivateRooms GetPrivateRoom(string roomName)
+        public static PrivateRoomModel GetPrivateRoom(string roomName)
         {
             var res = CurrentPrivateRoomHubProxy.Invoke<PrivateRooms>("GetPrivateRoom", roomName).Result;
- 
-            return res;
+            var pr = new PrivateRoomModel();
+            pr.From(res);
+            pr.HubUrl = currentPrivateRoomHub.Url;
+            return pr;
         }
 
         public static void SetCurrentHubConnection(string hubUrl)
@@ -78,11 +81,13 @@ namespace Log735Schedule
             currentPrivateRoomHub.Dispose();
 
         }
-        public static PrivateRooms CreatePrivateRoom(PrivateRooms privateRoom)
+        public static PrivateRoomModel CreatePrivateRoom(PrivateRooms privateRoom)
         {
             var r = CurrentPrivateRoomHubProxy.Invoke<PrivateRooms>("CreatePrivateRoom", privateRoom).Result;
-
-            return r;
+            var pr = new PrivateRoomModel();
+            pr.From(r);
+            pr.HubUrl = currentPrivateRoomHub.Url;
+            return pr;
 
         }
         
