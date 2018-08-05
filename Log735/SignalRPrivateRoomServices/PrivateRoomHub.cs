@@ -16,7 +16,7 @@ namespace SignalRPrivateRoomServices
             public static HashSet<string> ConnectedIds = new HashSet<string>();
             public static Dictionary<string,int> ActiveGroups = new Dictionary<string, int>();
         }
-
+       
         public bool GetExistingRoom(string roomName)
         {
             if (UserHandler.ActiveGroups.Where(v => v.Key == roomName).Any())
@@ -68,7 +68,18 @@ namespace SignalRPrivateRoomServices
             dbContext.SaveChanges();
             return true;
         }
-        
+
+
+        public Task AddEventCourse(string eventCourse,string eventLab)
+        {
+            var roomName = Context.QueryString["roomName"];
+            if (roomName != null)
+            {
+
+            }
+            return Clients.Group(roomName).newEvent(eventCourse);
+           
+        }
         public PrivateRooms GetPrivateRoom(string roomName)
         {
             var dbContext = new LOG735Entities();
@@ -115,14 +126,34 @@ namespace SignalRPrivateRoomServices
             return UserHandler.ConnectedIds.Count;
 
         }
+
+        
+
+
         public override Task OnDisconnected(bool stoped)
         {
             UserHandler.ConnectedIds.Remove(Context.ConnectionId);
+            var roomName = Context.QueryString["roomName"];
+            if (roomName != null)
+            {
+                LeaveRoom(roomName);
+            }
+               
             return base.OnDisconnected(stoped);
         }
         public override Task OnConnected()
         {
             UserHandler.ConnectedIds.Add(Context.ConnectionId);
+     
+            var roomName = Context.QueryString["roomName"];
+            if (roomName != null)
+            {
+                var userName = Context.QueryString["userName"];
+                SubcribeToRoom(roomName);
+                Clients.Group(roomName).NotifyConnectionToRoom(userName);
+            }
+
+           
             using (var db = new LOG735Entities())
             {
                 //// Retrieve user.

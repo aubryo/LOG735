@@ -20,7 +20,7 @@ namespace Log735Schedule.Models
 
         //}
         public string HubUrl { get; set; }
-
+        public string UserName { get; set; }
         public PrivateRoomModel()
         {
 

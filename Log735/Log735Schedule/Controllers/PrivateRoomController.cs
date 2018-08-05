@@ -29,8 +29,8 @@ namespace Log735Schedule.Controllers
         [HttpPost]
         public ActionResult PrivateRoomSchedule(PrivateRooms model, string returnUrl)
         {
-      
-            var returnModel = model;
+
+            var returnModel = new PrivateRoomModel();
             var bdModel = DbContextHelper.RoomExistBD(model);
             //Room exist pas dans bd
             if (bdModel.RoomId == 0)
@@ -52,8 +52,8 @@ namespace Log735Schedule.Controllers
             }
 
            var fullCourses =  DbContextHelper.GetCourseInfo(returnModel.Courses);
-                 
-            
+            returnModel.UserName = System.Web.HttpContext.Current.User.Identity.Name;
+
             return View(returnModel);
 
         }

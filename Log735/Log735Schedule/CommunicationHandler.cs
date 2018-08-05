@@ -100,11 +100,12 @@ namespace Log735Schedule
                 {
                     var hubConnection = new HubConnection(hubUrl);
                     IHubProxy privateRoomHubProxy = hubConnection.CreateHubProxy("PrivateRoomHub");
+                    
                     hubConnection.Start();
                     Execute(hubConnection);
                     var numberClient = privateRoomHubProxy.Invoke<int>("GetNumberClientOnline").Result;
                     numberConnectList.Add(new KeyValuePair<string, int>(hubUrl, numberClient));
-                    //hubConnection.Dispose();
+                    hubConnection.Dispose();
                 }
                 catch (Exception e)
                 {
@@ -129,7 +130,7 @@ namespace Log735Schedule
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e);
             }
 
         }
