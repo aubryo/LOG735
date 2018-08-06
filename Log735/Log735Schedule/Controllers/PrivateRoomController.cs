@@ -66,7 +66,7 @@ namespace Log735Schedule.Controllers
             foreach (var course in list)
             {
                 ListCourses.Add(new SelectListItem {
-                    Text = course.CourseName + course.GroupNumber,
+                    Text = course.CourseName + " (" +course.GroupNumber+ " )",
                     Value = course.CourseId.ToString()
 
                 });
@@ -112,15 +112,5 @@ namespace Log735Schedule.Controllers
 
         }
 
-        public ActionResult AddCourse()
-        {
-            return null;
-        }
-
-
-        public ActionResult DeleteCourse()
-        {
-            return null;
-        }
     }
 }

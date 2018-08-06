@@ -79,16 +79,10 @@ namespace SignalRPrivateRoomServices
             {
                 UserHandler.ActiveGroups[roomName] = UserHandler.ActiveGroups[roomName] - 1;
             }
+            Groups.Remove(Context.ConnectionId, roomName);
+            var userName = Context.QueryString["userName"];
+            return Clients.Group(roomName).notifyLeavingRoom(userName);
 
-            return Groups.Remove(Context.ConnectionId, roomName);
-
-        }
-        public bool AddCourses(Courses courses)
-        {
-           var dbContext = new LOG735Entities();
-            dbContext.Courses.Add(courses);
-            dbContext.SaveChanges();
-            return true;
         }
 
         public Task RemoveEventCourse(string courseId)
@@ -100,16 +94,16 @@ namespace SignalRPrivateRoomServices
                 throw new Exception("No privateroom with name");
             if (roomName != null)
             {
-               
-                var course = dbContext.Courses.Where(v=>v.CourseId == 2).FirstOrDefault();
+                var id = Int32.Parse(courseId);
+                var course = dbContext.Courses.Where(v=>v.CourseId == id).FirstOrDefault();
 
                 if (course != null)
                 {
-                    
-                  //TODO REMOVE COURSE to privateroom
-                 
+
+                    pr.Courses.Remove(course);
+                    dbContext.SaveChanges();
                    
-                    return Clients.Group(roomName).removeEvent(course.CourseId);
+                    return Clients.Group(roomName).removeEvent(course.CourseId,course.CourseName);
                     
                    
 
@@ -138,10 +132,11 @@ namespace SignalRPrivateRoomServices
                     eventCalendarCourse.EventId = course.CourseId;
                     var eventCalendarLab = GetModelEventCalendarFromCourseInfo(course.CourseInfo1, courseTitle, course.CourseName);
                     eventCalendarLab.EventId = course.CourseId;
-                    return Clients.Group(roomName).newEvent(eventCalendarCourse, eventCalendarLab);
+                   
                     pr.Courses.Add(course);
                     dbContext.SaveChanges();
-                    
+                    return Clients.Group(roomName).newEvent(eventCalendarCourse, eventCalendarLab);
+
                 }
             }
            
