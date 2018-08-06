@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Log735Schedule.Models
 {
@@ -21,11 +22,35 @@ namespace Log735Schedule.Models
         //}
         public string HubUrl { get; set; }
         public string UserName { get; set; }
+
+        public IEnumerable<SelectListItem> ListCourse { get; set; }
+
         public PrivateRoomModel()
         {
 
 
         }
+
+        public void SetListCourse()
+        {
+            
+                var dbContext = new LOG735Entities();
+                dbContext.Configuration.LazyLoadingEnabled = false;
+
+                 var list = dbContext.Courses.Select(v=>v.CourseAcronym).Distinct().ToList();
+            var selectList = new List<SelectListItem>();
+            foreach (var element in list)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element,
+                    Text = element
+                });
+            }
+            ListCourse = selectList;
+        }
+
+    
         public void From(PrivateRooms model)
         {
             

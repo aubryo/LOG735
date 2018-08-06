@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LOG735Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LOG735Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActiveRooms">
           <Key>
             <PropertyRef Name="RoomId" />
@@ -102,7 +102,6 @@
           <Property Name="RoomName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RoomPassword" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="OwnerId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ScheduleId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ScheduleCourse">
           <Key>
@@ -359,8 +358,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LOG735Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -470,7 +468,6 @@
           <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoomPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="OwnerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ScheduleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ActiveRooms" Relationship="Self.FK__ActiveRoo__RoomI__3C34F16F" FromRole="PrivateRooms" ToRole="ActiveRooms" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__PrivateRo__Owner__3864608B" FromRole="PrivateRooms" ToRole="AspNetUsers" />
           <NavigationProperty Name="Courses" Relationship="Self.ScheduleCourse" FromRole="PrivateRooms" ToRole="Courses" />
@@ -770,7 +767,6 @@
                 <ScalarProperty Name="RoomName" ColumnName="RoomName" />
                 <ScalarProperty Name="RoomPassword" ColumnName="RoomPassword" />
                 <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
-                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

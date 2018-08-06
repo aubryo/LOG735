@@ -24,7 +24,6 @@ namespace PrivateRoomDomain.Model
         public string RoomName { get; set; }
         public string RoomPassword { get; set; }
         public string OwnerId { get; set; }
-        public int ScheduleId { get; set; }
     
         public virtual ActiveRooms ActiveRooms { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }

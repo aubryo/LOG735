@@ -22,27 +22,44 @@
                     <h2 id="hub2">Serveur numéro 2</h2>
                 }
 
-                <div>
-                    <button id="buttonrefresh" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
-                </div>
-            </div>
-            <div class="col s9">
-                <div id='calendar'></div>
+                    <div>
+                        <button id="buttonrefresh" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
+                        <button id="removeEvent" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
+                    </div>
             </div>
             <div class="col s3">
-                <div class="row">
-                   
-                        <label for="textarea1">Journal d'événements</label>
-              
+                <div class="divider"></div>
+                <div class="section">
+                    @Html.DropDownList("Courses", Model.ListCourse, "- Choisir un cours -", new { @class = "form-control" });
                 </div>
-                <div class="row">
-                    <ul id="eventLog">
-                        <li>Liste des messages</li>
-                    </ul>
+                <div class="divider"></div>
+                <div class="section">
+                    @Html.DropDownList("Groupes", new SelectList(string.Empty, "Value", "Text"), "Choisir un cours avant", new { @class = "form-control" })
                 </div>
-               
+                <div class="section" id="CourseInfo">
+                </div>
+                <div class="section">             
+                    <a id="Ajouter" class="waves-effect waves-light btn">Ajouter</a>
+                    <a id="Enlever" class="waves-effect waves-light btn">Enlever</a>
+                </div>
             </div>
-        </div>
+                <div class="col s6">
+                    <div id='calendar'></div>
+                </div>
+                <div class="col s3">
+                    <div class="row">
+
+                        <label for="textarea1">Journal d'événements</label>
+
+                    </div>
+                    <div class="row">
+                        <ul id="eventLog">
+                            <li>Liste des messages</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
      
        
     </div>

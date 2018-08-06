@@ -21,8 +21,8 @@
         // Declare a proxy to reference the hub.
         var privateRoomProxy = $.connection.privateRoomHub;
 
-        var startTime = $.fullCalendar.moment('2018-08-02T08:00:00');
-        var endTime = $.fullCalendar.moment('2018-08-02T12:00:00');
+        var startTime = $.fullCalendar.moment('2018-08-05T08:00:00');
+        var endTime = $.fullCalendar.moment('2018-08-05T12:00:00');
         var event = {
 
             title: "Hell22o",
@@ -33,25 +33,62 @@
             borderColor: "#fc0101"
 
         };
-        $("#calendar").fullCalendar('renderEvent', event, true);
-        //create a function that the hub can call to broadcast messages.
-        privateRoomProxy.client.newEvent = function (eventModel) {
-            var events = {
-
-                title: "Hello",
-                description: "Patate",
-                start: moment("2018-08-03T08:30:00"),
-                end: moment("2018-08-03T12:30:00"),
-                backgroundColor: "#9501fc",
-                borderColor: "#fc0101"
-
-            };
-            $("#calendar").fullCalendar('renderEvent', events, true);
-            addEventLog("Add Event");
+        privateRoomProxy.client.errorEvent = function(message)
+        {
+            addEventLog(message);
         };
 
-        privateRoomProxy.client.removeEvent = function (id) {
-            $("#calendar").fullCalendar('removeEvent', id);
+        $("#calendar").fullCalendar('renderEvent', event, true);
+        //create a function that the hub can call to broadcast messages.
+        privateRoomProxy.client.initiateFullCalendar = function (listCalendarEvent) {
+            var events = [];
+            listCalendarEvent.forEach(function (element) {
+                events.push(
+                    {
+                        _id: element.EventId,
+                        title: element.Title,
+                        description: element.Description,
+                        start: moment(element.Start),
+                        end: moment(element.End),
+                        backgroundColor: element.BackgroundColor,
+                        borderColor: element.BorderColor
+                    });
+
+            });
+            $("#calendar").fullCalendar('addEventSource', events, true);
+        };
+        privateRoomProxy.client.newEvent = function (eventCourse, eventLab) {
+            var eventCourseCal = {
+
+                _id: eventCourse.EventId,
+                title: eventCourse.Title,
+                description: eventCourse.Description,
+                start: moment(eventCourse.Start),
+                end: moment(eventCourse.End),
+                backgroundColor: eventCourse.BackgroundColor,
+                borderColor: eventCourse.BorderColor
+                
+
+            };
+            var eventLabCal = {
+
+                _id: eventLab.EventId,
+                title: eventLab.Title,
+                description: eventLab.Description,
+                start: moment(eventLab.Start),
+                end: moment(eventLab.End),
+                backgroundColor: eventLab.BackgroundColor,
+                borderColor: eventLab.BorderColor
+
+            };
+            $("#calendar").fullCalendar('renderEvent', eventCourseCal, true);
+            $("#calendar").fullCalendar('renderEvent', eventLabCal, true);
+            addEventLog("Cours " + eventCourse.Title+ " ajouté");
+        };
+
+        privateRoomProxy.client.removeEvent = function (idCourse) {
+       
+            $("#calendar").fullCalendar('removeEvents', idCourse);
             addEventLog("Remove Event");
         };
 
@@ -75,10 +112,24 @@
         $.connection.hub.start().done(function () {
             $('#buttonrefresh').click(function () {
                 // Call the Send method on the hub.
-                privateRoomProxy.server.newEvent("3");
+                privateRoomProxy.server.addEventCourse("3");
 
             });
+            $('#removeEvent').click(function () {
 
+                privateRoomProxy.server.removeEventCourse("3");
+
+            });
+            $('#Enlever').click(function () {
+
+                privateRoomProxy.server.removeEventCourse($('#Groupes').val());
+
+            });
+            $('#Ajouter').click(function () {
+               
+                privateRoomProxy.server.addEventCourse($('#Groupes').val());
+
+            });
             $('#heartbeat').click(function () {
                 // Call the Send method on the hub.
                 //  privateRoomProxy.server.heartbeat();
@@ -96,6 +147,69 @@
     });
 
 
+    $("#Courses").change(function () {
+        $("#Groupes").empty();
+        $.ajax({
+            type: 'POST',
+            url: '/PrivateRoom/GetCourseGroup', // we are calling json method  
+
+            dataType: 'json',
+
+            data: { id: $("#Courses").val() },
+            // here we are get value of selected country and passing same value  
+            //as inputto json method GetStates.
+
+                success: function(group) {
+                    // states contains the JSON formatted list  
+                    // of states passed from the controller  
+                    $("#Groupes").append('<option value="">- Choisir un group -</option>');
+                    $.each(group, function (i, group) {
+          
+                 
+                        $("#Groupes").append('<option value="' + group.Value + '">' +
+                            group.Text + '</option>');
+                        // here we are adding option for States  
+
+                    });
+                }
+           
+        });
+        return false;
+    })  
+    $("#Groupes").change(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/PrivateRoom/GetCourseInfo', // we are calling json method  
+
+            dataType: 'json',
+
+            data: { id: $("#Groupes").val() },
+            // here we are get value of selected country and passing same value  
+            //as inputto json method GetStates.
+
+            success: function (group) {
+                // states contains the JSON formatted list  
+                // of states passed from the controller  
+                $('#CourseInfo').empty();
+                $.each(group, function (i, group) {
+                    var container = $('<div class="fc-event-container"></div>');
+                    var a = $('<a class="fc-time-grid-event fc-event fc-start fc-end" style="background-color:' + group.BackgroundColor + '; border-color:' + group.BorderColor + '; top: 21px; bottom: -109px; z-index: 1; left: 0 %; right: 0 %; ">');
+                    var content = $('<div class="fc-content"></div>');
+                    var divStart = $('<div class="fc-time""><span>' + group.Start + ' - ' + group.End + '</span></div><div class="fc-title">' + group.Title + '</div>');
+                    divStart.appendTo(content);
+                    content.appendTo(a);
+                    a.appendTo(container);
+                    container.appendTo('#CourseInfo');
+
+                });
+            },
+            error: function (ex) {
+                $('#CourseInfo').empty();
+            }
+        });
+    })
+  
 
 });
 

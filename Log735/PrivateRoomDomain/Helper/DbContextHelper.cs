@@ -1,6 +1,7 @@
 ﻿using PrivateRoomDomain.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,33 @@ namespace PrivateRoomDomain.Helper
             }
 
             return courses;
-            
+
+        }
+
+        public static List<Courses> GetCourseFromAcronym(string acronym)
+        {
+            var dbContext = new LOG735Entities();
+            dbContext.Configuration.LazyLoadingEnabled = false;
+            var listCourse = dbContext.Courses.Where(v => v.CourseAcronym == acronym).ToList();
+
+            return listCourse;
+        }
+
+        public static Courses GetCourseFromId(int id)
+        {
+            var dbContext = new LOG735Entities();
+            dbContext.Configuration.LazyLoadingEnabled = false;
+
+            var course =dbContext.Courses.Where(v => v.CourseId == id).Include(v=>v.CourseInfo).Include(v=>v.CourseInfo1).FirstOrDefault();
+            //var courseInfo = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoId).FirstOrDefault();
+            //var courseInfoLab = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoLabId).FirstOrDefault();
+            //courseInfo.Courses = null;
+            //courseInfoLab.Courses1 = null;
+            //var list = new List<CourseInfo>();
+            //list.Add(courseInfo);
+            //list.Add(courseInfoLab);
+
+            return course;
         }
     }
 }

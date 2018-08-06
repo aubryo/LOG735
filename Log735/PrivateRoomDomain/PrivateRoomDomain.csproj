@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalendarModel.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="HelloModel.cs" />
     <Compile Include="Helper\DbContextHelper.cs" />
