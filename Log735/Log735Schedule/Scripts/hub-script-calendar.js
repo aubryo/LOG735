@@ -136,10 +136,10 @@
            }, 2000);
            var hub1 = $("#hub1");
            if (hub1.length) {
-               if (privateRoomProxy.hub.url === "http://localhost:8088/signalr") {
+               if (privateRoomProxy.connection.url === "http://localhost:8088/signalr") {
                    hub1.Text("Serveur 2");
                }
-               else if (privateRoomProxy.hub.url === "http://localhost:8089/signalr") {
+               else if (privateRoomProxy.connection.url === "http://localhost:8089/signalr") {
                    hub1.Text("Serveur 1");
 
                }
@@ -147,10 +147,10 @@
             else {
                 var hub2 = $("#hub2");
                 if (hub2.length) {
-                    if (privateRoomProxy.hub.url === "http://localhost:8089/signalr") {
+                    if (privateRoomProxy.connection.url === "http://localhost:8089/signalr") {
                         hub1.Text("Serveur 1");
                     }
-                    else if (privateRoomProxy.hub.url === "http://localhost:8088/signalr") {
+                    else if (privateRoomProxy.connection.url === "http://localhost:8088/signalr") {
                         hub1.Text("Serveur 2");
 
                     }

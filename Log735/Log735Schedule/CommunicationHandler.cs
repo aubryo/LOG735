@@ -58,8 +58,8 @@ namespace Log735Schedule
 
         public static void SetCurrentHubConnection(string hubUrl)
         {
-            var currentPrivateRoomHub = new HubConnection(hubUrl);
-            IHubProxy CurrentPrivateRoomHubProxy = currentPrivateRoomHub.CreateHubProxy("PrivateRoomHub");
+            currentPrivateRoomHub = new HubConnection(hubUrl);
+            CurrentPrivateRoomHubProxy = currentPrivateRoomHub.CreateHubProxy("PrivateRoomHub");
             currentPrivateRoomHub.Start();
             Execute(currentPrivateRoomHub);
             
