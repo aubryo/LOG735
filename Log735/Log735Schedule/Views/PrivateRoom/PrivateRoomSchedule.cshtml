@@ -5,6 +5,7 @@
 
 
 }
+
 <script type="text/javascript">
   var modelJava = @Html.Raw(Json.Encode(Model));
 </script>
@@ -13,19 +14,21 @@
         <div class="col s12">
             <div>
                 <h2>Salle @Html.Label(Model.RoomName)</h2>
-                @if (Model.HubUrl == "http://localhost:8089")
+                @if (Model.HubUrl == "http://localhost:8089/signalr/")
                 {
+              
                     <h2 id="hub1">Serveur numéro 1</h2>
                 }
-                else if (Model.HubUrl == "http://localhost:8088")
+                else if (Model.HubUrl == "http://localhost:8088/signalr/")
                 {
+              
                     <h2 id="hub2">Serveur numéro 2</h2>
                 }
 
-                    <div>
-                        <button id="buttonrefresh" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
-                        <button id="removeEvent" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
-                    </div>
+                <div>
+                    <button id="buttonrefresh" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
+                    <button id="removeEvent" type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>
+                </div>
             </div>
             <div class="col s3">
                 <div class="divider"></div>
@@ -38,36 +41,38 @@
                 </div>
                 <div class="section" id="CourseInfo">
                 </div>
-                <div class="section">             
+                <div class="section">
                     <a id="Ajouter" class="waves-effect waves-light btn">Ajouter</a>
                     <a id="Enlever" class="waves-effect waves-light btn">Enlever</a>
                 </div>
             </div>
-                <div class="col s6">
-                    <div id='calendar'></div>
-                </div>
-                <div class="col s3">
-                    <div class="row">
-
-                        <label for="textarea1">Journal d'événements</label>
-
-                    </div>
-                    <div class="row">
-                        <ul id="eventLog">
-                            <li>Liste des messages</li>
-                        </ul>
-                    </div>
-
-                </div>
+            <div class="col s6">
+                <div id='calendar'></div>
             </div>
-     
-       
-    </div>
-    
+            <div class="col s3">
+                <div class="row">
 
-    
+                    <label for="textarea1">Journal d'événements</label>
+
+                </div>
+                <div class="row">
+                    <ul id="eventLog">
+                        <li>Liste des messages</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
 </body>
 @section calendarScript{
+        <script src="http://localhost:8089/signalr/hubs"></script>
+        <script src="http://localhost:8088/signalr/hubs"></script>
     <script src="~/Scripts/hub-script-calendar.js"></script>
 
 }

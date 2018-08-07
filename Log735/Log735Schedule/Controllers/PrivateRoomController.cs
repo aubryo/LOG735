@@ -53,9 +53,9 @@ namespace Log735Schedule.Controllers
                 returnModel = CommunicationHandler.GetPrivateRoom(model.RoomName);
             }
           
-           //var fullCourses =  DbContextHelper.GetCourseInfo(returnModel.Courses);
             returnModel.UserName = System.Web.HttpContext.Current.User.Identity.Name;
             returnModel.SetListCourse();
+            CommunicationHandler.DisposeConnection();
             return View(returnModel);
 
         }

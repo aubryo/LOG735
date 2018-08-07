@@ -23,11 +23,11 @@ namespace SignalRPrivateRoomServices
             /// </summary>
             static void Main(string[] args)
             {
-            var service = new SignalRPrivateRoomServices(args);
-            ServiceBase[] ServicesToRun = new ServiceBase[] { service };
-            ServiceBase.Run(ServicesToRun);
+            //var service = new SignalRPrivateRoomServices(args);
+            //ServiceBase[] ServicesToRun = new ServiceBase[] { service };
+            //ServiceBase.Run(ServicesToRun);
 
-            string url = "http://localhost:8089";//18.191.13.220
+            string url = "http://localhost:8088";//18.191.13.220
             using (WebApp.Start(url))
             {
 

@@ -5,27 +5,26 @@ using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
 
-[assembly: OwinStartup(typeof(SignalRPrivateRoomServices.Startup))]
+[assembly: OwinStartup(typeof(SignalRPrivateRoomServices2.Startup))]
 
 
-namespace SignalRPrivateRoomServices
+namespace SignalRPrivateRoomServices2
 {
    
         public class Startup
         {
             public void Configuration(IAppBuilder app)
             {
-            GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(10);
+             GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(10);
             // Branch the pipeline here for requests that start with "/signalr"
             app.Map("/signalr", map =>
             {
-                GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(10);
                 // Setup the CORS middleware to run before SignalR.
                 // By default this will allow all origins. You can 
                 // configure the set of origins and/or http verbs by
                 // providing a cors options with a different policy.
                 map.UseCors(CorsOptions.AllowAll);
-
+                GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(10);
                 var hubConfiguration = new HubConfiguration
                 {
 

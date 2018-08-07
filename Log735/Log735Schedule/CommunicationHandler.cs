@@ -13,14 +13,11 @@ namespace Log735Schedule
 {
     public static class CommunicationHandler
     {
-        public static List<string> ListHubUrl = new List<string>{ "http://localhost:8089" }; //"http://localhost:8088"
+        public static List<string> ListHubUrl = new List<string>{ "http://localhost:8089", "http://localhost:8088" }; //
         private static IHubProxy CurrentPrivateRoomHubProxy;
         private static HubConnection currentPrivateRoomHub;
      
-        private static void HandleNotify(Currency currency)
-        {
-            Console.WriteLine("Currency " + currency.CurrencySign + ", Rate = " + currency.USDValue);
-        }
+       
 
         public static string GlobalInvokeFindRightHub(string method, string args)
         {
@@ -68,18 +65,9 @@ namespace Log735Schedule
             
         }
 
-        private static bool AddCourse(Courses course)
-        {
-           var r =CurrentPrivateRoomHubProxy.Invoke<bool>("AddCourse",course).Result;
-
-            return r;
-
-
-        }
-        public static void CloseConnection()
+        public static void DisposeConnection()
         {
             currentPrivateRoomHub.Dispose();
-
         }
         public static PrivateRoomModel CreatePrivateRoom(PrivateRooms privateRoom)
         {
@@ -104,7 +92,7 @@ namespace Log735Schedule
                     hubConnection.Start();
                     Execute(hubConnection);
                     var numberClient = privateRoomHubProxy.Invoke<int>("GetNumberClientOnline").Result;
-                    numberConnectList.Add(new KeyValuePair<string, int>(hubUrl, numberClient));
+                    numberConnectList.Add(new KeyValuePair<string, int>(hubUrl, numberClient-1));
                     hubConnection.Dispose();
                 }
                 catch (Exception e)
@@ -156,21 +144,7 @@ namespace Log735Schedule
 
             }).Wait();
         }
-        public static string ExecuteMethod(string method, string args, string serverUri, string hubName)
-        {
-            var hubConnection = new HubConnection("http://localhost:8089");
-            IHubProxy currencyExchangeHubProxy = hubConnection.CreateHubProxy("CurrencyExchangeHub");
-
-            // This line is necessary to subscribe for broadcasting messages
-            currencyExchangeHubProxy.On<Currency>("NotifyChange", HandleNotify);
-
-            // Start the connection
-            hubConnection.Start().Wait();
-
-            var result = currencyExchangeHubProxy.Invoke<string>(method).Result;
-
-            return result;
-        }
+       
 
     }
 }

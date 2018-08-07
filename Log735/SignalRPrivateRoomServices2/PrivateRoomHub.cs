@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-namespace SignalRPrivateRoomServices
+namespace SignalRPrivateRoomServices2
 {
     public class PrivateRoomHub : Hub
     {
@@ -87,7 +87,6 @@ namespace SignalRPrivateRoomServices
 
         public Task RemoveEventCourse(string courseId)
         {
-
             var roomName = Context.QueryString["roomName"];
             var dbContext = new LOG735Entities();
             var pr = dbContext.PrivateRooms.Where(v => v.RoomName == roomName).AsNoTracking().FirstOrDefault();
@@ -96,7 +95,7 @@ namespace SignalRPrivateRoomServices
             if (roomName != null)
             {
                 var id = Int32.Parse(courseId);
-                var course = dbContext.Courses.Where(v => v.CourseId == id).AsNoTracking().FirstOrDefault();
+                var course = dbContext.Courses.Where(v=>v.CourseId == id).AsNoTracking().FirstOrDefault();
 
                 if (course != null)
                 {
@@ -106,18 +105,19 @@ namespace SignalRPrivateRoomServices
                     dbContext.SaveChanges();
                     dbContext.Entry(course).State = EntityState.Detached;
                     dbContext.Entry(pr).State = EntityState.Detached;
-                    return Clients.Group(roomName).removeEvent(course.CourseId, course.CourseName);
-
-
+                    return Clients.Group(roomName).removeEvent(course.CourseId,course.CourseName);
+                    
+                   
 
                 }
             }
 
             return Clients.Group(roomName).errorEvent("Course n'existe pas");
+
         }
         public Task AddEventCourse(string eventCourseId)
         {
-
+            
             var roomName = Context.QueryString["roomName"];
             var dbContext = new LOG735Entities();
             var pr = dbContext.PrivateRooms.Where(v => v.RoomName == roomName).AsNoTracking().FirstOrDefault();
@@ -126,7 +126,7 @@ namespace SignalRPrivateRoomServices
             if (roomName != null)
             {
                 var id = Int32.Parse(eventCourseId);
-                var course = dbContext.Courses.Where(v => v.CourseId == id).Include(v => v.CourseInfo).Include(v => v.CourseInfo1).AsNoTracking().FirstOrDefault();
+                var course = dbContext.Courses.Where(v => v.CourseId == id).Include(v=>v.CourseInfo).Include(v=>v.CourseInfo1).AsNoTracking().FirstOrDefault();
                 if (course != null)
                 {
                     var courseTitle = $"{course.CourseAcronym} ({course.GroupNumber})";
@@ -140,7 +140,7 @@ namespace SignalRPrivateRoomServices
                         dbContext.Courses.Attach(course);
                         dbContext.PrivateRooms.Attach(pr);
                         pr.Courses.Add(course);
-
+                      
                         dbContext.SaveChanges();
                         dbContext.Entry(course).State = EntityState.Detached;
                         dbContext.Entry(pr).State = EntityState.Detached;
@@ -150,9 +150,9 @@ namespace SignalRPrivateRoomServices
 
                 }
             }
-
+           
             return Clients.Group(roomName).errorEvent("Course n'existe pas");
-
+           
         }
         private CalendarModel GetModelEventCalendarFromCourseInfo(CourseInfo info,string courseTitle, string courseName)
         {
@@ -189,6 +189,7 @@ namespace SignalRPrivateRoomServices
         {
             var dbContext = new LOG735Entities();
             dbContext.PrivateRooms.Add(privateRoom);
+            
             dbContext.SaveChanges();
             dbContext.Entry(privateRoom).State = EntityState.Detached;
             return privateRoom;

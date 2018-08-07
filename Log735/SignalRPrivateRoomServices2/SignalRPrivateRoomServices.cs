@@ -11,9 +11,9 @@ using System.Runtime.InteropServices;
 using Microsoft.Owin.Hosting;
 using Microsoft.Owin;
 
-[assembly: OwinStartup(typeof(SignalRPrivateRoomServices.Startup))]
+[assembly: OwinStartup(typeof(SignalRPrivateRoomServices2.Startup))]
 
-namespace SignalRPrivateRoomServices
+namespace SignalRPrivateRoomServices2
 {
     public partial class SignalRPrivateRoomServices : ServiceBase
     {
@@ -26,40 +26,40 @@ namespace SignalRPrivateRoomServices
         public SignalRPrivateRoomServices(string[] args)
         {
             InitializeComponent();
-            eventLog1 = new EventLog();
-            if (args.Count() > 0)
-            {
-                eventSourceName = args[0];
-            }
-            if (args.Count() > 1)
-            {
-                logName = args[1];
-            }
-            eventLog1 = new System.Diagnostics.EventLog();
-            if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
-            {
-                System.Diagnostics.EventLog.CreateEventSource(eventSourceName, logName);
-            }
-            eventLog1.Source = eventSourceName;
-            eventLog1.Log = logName;
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 60000; // 60 seconds  
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
-            timer.Start();
+            //eventLog1 = new EventLog();
+            //if (args.Count() > 0)
+            //{
+            //    eventSourceName = args[0];
+            //}
+            //if (args.Count() > 1)
+            //{
+            //    logName = args[1];
+            //}
+            //eventLog1 = new System.Diagnostics.EventLog();
+            //if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
+            //{
+            //    System.Diagnostics.EventLog.CreateEventSource(eventSourceName, logName);
+            //}
+            //eventLog1.Source = eventSourceName;
+            //eventLog1.Log = logName;
+            //System.Timers.Timer timer = new System.Timers.Timer();
+            //timer.Interval = 60000; // 60 seconds  
+            //timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
+            //timer.Start();
         }
 
         protected override void OnStart(string[] args)
         {
-            ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
-            serviceStatus.dwWaitHint = 100000;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-            eventLog1.WriteEntry("In OnStart");
+            //ServiceStatus serviceStatus = new ServiceStatus();
+            //serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
+            //serviceStatus.dwWaitHint = 100000;
+            //SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            //eventLog1.WriteEntry("In OnStart");
 
-            serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-            string url = "http://localhost:8089";//18.191.13.220
-            WebApp.Start(url);
+            //serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
+            //SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            //string url = "http://localhost:8089";//18.191.13.220
+            //WebApp.Start(url);
         }
 
         protected override void OnStop()

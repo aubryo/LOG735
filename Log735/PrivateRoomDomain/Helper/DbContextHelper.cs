@@ -14,14 +14,14 @@ namespace PrivateRoomDomain.Helper
         public static AspNetUsers GetUser(string userName)
         {
             var dbcontext = new LOG735Entities();
-            var user = dbcontext.AspNetUsers.Where(v => v.UserName == userName).First();
+            var user = dbcontext.AspNetUsers.Where(v => v.UserName == userName).AsNoTracking().First();
             return user;
         }
 
         public static PrivateRooms RoomExistBD(PrivateRooms model)
         {
             var dbContext = new LOG735Entities();
-            var pR = dbContext.PrivateRooms.Where(v => v.RoomName == model.RoomName).FirstOrDefault();
+            var pR = dbContext.PrivateRooms.Where(v => v.RoomName == model.RoomName).AsNoTracking().FirstOrDefault();
             if (pR == null)
                 pR = model;
 
@@ -35,8 +35,8 @@ namespace PrivateRoomDomain.Helper
             dbContext.Configuration.LazyLoadingEnabled = false;
             foreach (var course in courses)
             {
-                var CourseInfo = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoId).First();
-                var courseinfoLab = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoLabId).First();
+                var CourseInfo = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoId).AsNoTracking().First();
+                var courseinfoLab = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoLabId).AsNoTracking().First();
                 course.CourseInfo = CourseInfo;
                 course.CourseInfo1 = courseinfoLab;
             }
@@ -49,7 +49,7 @@ namespace PrivateRoomDomain.Helper
         {
             var dbContext = new LOG735Entities();
             dbContext.Configuration.LazyLoadingEnabled = false;
-            var listCourse = dbContext.Courses.Where(v => v.CourseAcronym == acronym).ToList();
+            var listCourse = dbContext.Courses.Where(v => v.CourseAcronym == acronym).AsNoTracking().ToList();
 
             return listCourse;
         }
@@ -59,14 +59,8 @@ namespace PrivateRoomDomain.Helper
             var dbContext = new LOG735Entities();
             dbContext.Configuration.LazyLoadingEnabled = false;
 
-            var course =dbContext.Courses.Where(v => v.CourseId == id).Include(v=>v.CourseInfo).Include(v=>v.CourseInfo1).FirstOrDefault();
-            //var courseInfo = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoId).FirstOrDefault();
-            //var courseInfoLab = dbContext.CourseInfo.Where(v => v.CourseInfoId == course.CourseInfoLabId).FirstOrDefault();
-            //courseInfo.Courses = null;
-            //courseInfoLab.Courses1 = null;
-            //var list = new List<CourseInfo>();
-            //list.Add(courseInfo);
-            //list.Add(courseInfoLab);
+            var course =dbContext.Courses.Where(v => v.CourseId == id).Include(v=>v.CourseInfo).Include(v=>v.CourseInfo1).AsNoTracking().FirstOrDefault();
+        
 
             return course;
         }

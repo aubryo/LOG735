@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77EBF42E-D91E-4354-9204-BE4C9139F254}</ProjectGuid>
+    <ProjectGuid>{C1FB7056-B05F-48C8-8F28-A1DB9A117D76}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SignalRPrivateRoomServices</RootNamespace>
     <AssemblyName>SignalRPrivateRoomServices</AssemblyName>
