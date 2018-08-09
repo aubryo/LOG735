@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PrivateRoomDomain.Helper.DbContextHelper">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAgIAAAAAAAAAAEAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Helper\DbContextHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.CalendarModel">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAgACAgAEAAAAAAAAgCCAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\CalendarModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.LOG735Entities">
+    <Position X="11.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQAAAAhAAAAGAAAAAAEAQAQAAIAAAAABAAAAE=</HashCode>
+      <FileName>Model\Log735Context.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.ActiveRooms">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ActiveRooms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.AspNetRoles">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\AspNetRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.AspNetUserClaims">
+    <Position X="4.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAAAAAAAQAAAAAgAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\AspNetUserClaims.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.AspNetUserLogins">
+    <Position X="2.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAgAAAAAEAAAABAAAAAAAAA=</HashCode>
+      <FileName>Model\AspNetUserLogins.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.AspNetUsers">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAACAApEAAAAAAQAABAAAAQAAIAQQAABAAAQE=</HashCode>
+      <FileName>Model\AspNetUsers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.CourseInfo">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAIgAgAAAAAAAAARAAAQA=</HashCode>
+      <FileName>Model\CourseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.Courses">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKEAAEAAAAAhEAAICCBAAAAAAAAAAAIAgAAAQAAAAA=</HashCode>
+      <FileName>Model\Courses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.Departments">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAQAAAAAAQAAABAAAAA=</HashCode>
+      <FileName>Model\Departments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.PrivateRooms">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAaAAAAAAAAAEAAAAAAAAAAAAgAAAAAABAAAAA=</HashCode>
+      <FileName>Model\PrivateRooms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.Trimesters">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Model\Trimesters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrivateRoomDomain.Model.UserProfiles">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAgAAABCAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\UserProfiles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

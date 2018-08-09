@@ -102,7 +102,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrencyExchangeHub.cs" />
     <Compile Include="PrivateRoomHub.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -110,7 +109,6 @@
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyHub.cs" />
     <Compile Include="SignalRPrivateRoomServices.cs">
       <SubType>Component</SubType>
     </Compile>

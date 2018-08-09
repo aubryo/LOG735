@@ -34,7 +34,7 @@ namespace Log735Schedule.Controllers
          
             var returnModel = new PrivateRoomModel();
             var bdModel = DbContextHelper.RoomExistBD(model);
-            //Room exist pas dans bd
+            //Room n'exist pas dans bd
             if (bdModel.RoomId == 0)
             {
                 ModelHelper.PrivateRoomModel(model);
@@ -46,21 +46,24 @@ namespace Log735Schedule.Controllers
             {
                 var hubUrl = GetHubRoomExist(model.RoomName);
                 if (hubUrl != "no")
-                    ConnectToHub(hubUrl); //Connect au room 
+                    ConnectToHub(hubUrl); //Connexion au room 
                 else
                     ConnectToAvailableHub(); //Prend le hub le plus libre pour la room
 
                 returnModel = CommunicationHandler.GetPrivateRoom(model.RoomName);
             }
           
-            returnModel.UserName = System.Web.HttpContext.Current.User.Identity.Name;
-            returnModel.SetListCourse();
-            CommunicationHandler.DisposeConnection();
+            returnModel.UserName = System.Web.HttpContext.Current.User.Identity.Name; //User name de l'utilisateur connecter
+            returnModel.SetListCourse(); //La liste des cours pour le dropdown de cours
+            CommunicationHandler.DisposeConnection(); //Arrete la connexion, inutile de la garder ouverte.
             return View(returnModel);
 
         }
+
+        //Population du dropdownList pour les groups pour un cours
         public JsonResult GetCourseGroup(string id)
         {
+            
             var list =DbContextHelper.GetCourseFromAcronym(id);
             List<SelectListItem> ListCourses = new List<SelectListItem>();
             foreach (var course in list)
@@ -75,6 +78,7 @@ namespace Log735Schedule.Controllers
             return Json(new SelectList(ListCourses, "Value", "Text"));
         }
 
+        //Information du cours selon le groupe du cours choisit
         public string GetCourseInfo(string id)
         {
             if (id == "")

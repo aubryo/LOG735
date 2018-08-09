@@ -120,6 +120,7 @@ namespace SignalRPrivateRoomServices2
             
             var roomName = Context.QueryString["roomName"];
             var dbContext = new LOG735Entities();
+            
             var pr = dbContext.PrivateRooms.Where(v => v.RoomName == roomName).AsNoTracking().FirstOrDefault();
             if (pr == null)
                 throw new Exception("No privateroom with name");
@@ -156,9 +157,9 @@ namespace SignalRPrivateRoomServices2
         }
         private CalendarModel GetModelEventCalendarFromCourseInfo(CourseInfo info,string courseTitle, string courseName)
         {
+
             var calendarModel = new CalendarModel(info, courseTitle, courseName);
-            JavaScriptSerializer serialize = new JavaScriptSerializer();
-            var serializedModel = serialize.Serialize(calendarModel);
+                     
 
             return calendarModel;
 
@@ -176,14 +177,7 @@ namespace SignalRPrivateRoomServices2
             return pr;
             
         }
-        //public bool CreateSchedule(Schedules schedule)
-        //{
-        //    var dbContext = new Log735Context();
-        //    dbContext.Schedules.Add(schedule);
-        //    dbContext.SaveChanges();
-
-        //    return true;
-        //}
+       
 
         public PrivateRooms CreatePrivateRoom(PrivateRooms privateRoom)
         {

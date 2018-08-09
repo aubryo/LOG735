@@ -50,9 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalendarModel.cs" />
-    <Compile Include="Currency.cs" />
-    <Compile Include="HelloModel.cs" />
+    <Compile Include="Model\CalendarModel.cs" />
     <Compile Include="Helper\DbContextHelper.cs" />
     <Compile Include="Model\ActiveRooms.cs">
       <DependentUpon>Log735Context.tt</DependentUpon>
@@ -110,6 +108,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Log735Context.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="PrivateRoomDomainUML.cd" />
     <None Include="Model\Log735Context.edmx.diagram">
       <DependentUpon>Log735Context.edmx</DependentUpon>
     </None>

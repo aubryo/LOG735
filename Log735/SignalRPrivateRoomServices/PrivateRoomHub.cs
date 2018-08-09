@@ -157,9 +157,7 @@ namespace SignalRPrivateRoomServices
         private CalendarModel GetModelEventCalendarFromCourseInfo(CourseInfo info,string courseTitle, string courseName)
         {
             var calendarModel = new CalendarModel(info, courseTitle, courseName);
-            JavaScriptSerializer serialize = new JavaScriptSerializer();
-            var serializedModel = serialize.Serialize(calendarModel);
-
+       
             return calendarModel;
 
 
@@ -176,14 +174,7 @@ namespace SignalRPrivateRoomServices
             return pr;
             
         }
-        //public bool CreateSchedule(Schedules schedule)
-        //{
-        //    var dbContext = new Log735Context();
-        //    dbContext.Schedules.Add(schedule);
-        //    dbContext.SaveChanges();
-
-        //    return true;
-        //}
+      
 
         public PrivateRooms CreatePrivateRoom(PrivateRooms privateRoom)
         {

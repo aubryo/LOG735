@@ -37,37 +37,8 @@ namespace SignalRPrivateRoomServices
                 {
 
 
-                    string key = null;
-                    if (key == null)
-                        continue;
-                    if (key.ToUpper() == "W")
-                    {
-                       // IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-                       // hubContext.Clients.All.addMessage("server", "ServerMessage");
-                        Console.WriteLine("Server Sending addMessage\n");
-                    }
-                    if (key.ToUpper() == "E")
-                    {
-                      //  IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-                      //  hubContext.Clients.All.heartbeat();
-                        Console.WriteLine("Server Sending heartbeat\n");
-                    }
-                    if (key.ToUpper() == "R")
-                    {
-                       // IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-
-                        var vv = new HelloModel { Age = 37, Molly = "pushed direct from Server " };
-
-                     //   hubContext.Clients.All.sendHelloObject(vv);
-                        Console.WriteLine("Server Sending sendHelloObject\n");
-                    }
-                    if (key.ToUpper() == "C")
-                    {
-                        break;
-                    }
                 }
-
-                Console.ReadLine();
+            
             }
 
 

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SignalRPrivateRoomServices.PrivateRoomHub">
+    <Position X="2.5" Y="0.5" Width="3.25" />
+    <NestedTypes>
+      <Class Name="SignalRPrivateRoomServices.PrivateRoomHub.UserHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PrivateRoomHub.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAKAAEAAIAAAAAQCAAAAgAAAAAYAAAAAIAAABAE=</HashCode>
+      <FileName>PrivateRoomHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SignalRPrivateRoomServices.Program">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SignalRPrivateRoomServices.ProjectInstaller">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAAAAAAAACAAAACAAAAAAQIAAAAAAAAAAA=</HashCode>
+      <FileName>ProjectInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SignalRPrivateRoomServices.SignalRPrivateRoomServices">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SignalRPrivateRoomServices.SignalRPrivateRoomServices.ServiceState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SignalRPrivateRoomServices.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="SignalRPrivateRoomServices.SignalRPrivateRoomServices.ServiceStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SignalRPrivateRoomServices.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACACAAAAEICAACACAAAAAAAIAEAAAIAAAAA=</HashCode>
+      <FileName>SignalRPrivateRoomServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SignalRPrivateRoomServices.Startup">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
